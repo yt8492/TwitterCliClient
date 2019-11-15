@@ -15,7 +15,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.13.0'
     implementation 'io.ktor:ktor-client-cio:1.2.5'
-    implementation 'io.ktor:ktor-client-json-jvm:1.2.5'
+    implementation 'io.ktor:ktor-client-auth-jvm:1.2.5'
+    implementation 'io.ktor:ktor-client-api.json-jvm:1.2.5'
     implementation 'io.ktor:ktor-client-serialization-jvm:1.2.5'
 }
 
