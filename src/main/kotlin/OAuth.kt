@@ -21,12 +21,10 @@ data class OAuth(
             "oauth_token" to oauthToken,
             "oauth_version" to "1.0"
         )
-        val paramList = listOf(method, url.encodeUrl()) + (params + requestParams).map {
+        val paramList = (params + requestParams).map {
             "${it.key}=${it.value}"
-        }
-        val requestValue = paramList.joinToString("&") {
-            it.encodeUrl()
-        }
+        }.sorted()
+        val requestValue = listOf(method, url.encodeUrl(), paramList.joinToString("&").encodeUrl()).joinToString("&")
         val key = "${consumerSecret.encodeUrl()}&${oauthTokenSecret.encodeUrl()}"
         val signingKey = SecretKeySpec(key.toByteArray(), "HmacSHA1")
         val mac = Mac.getInstance(signingKey.algorithm).apply {

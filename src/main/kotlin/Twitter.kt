@@ -1,11 +1,11 @@
-import kotlinx.io.IOException
+import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
 class Twitter(private val oAuth: OAuth) {
     fun tweet(text: String) {
         val request = mapOf(
-            "status" to text
+            "status" to text.encodeUrl()
         )
         val param = oAuth.buildAuthHeaderParams(
             "POST",
@@ -15,9 +15,8 @@ class Twitter(private val oAuth: OAuth) {
         val paramStr = param.map {
             """${it.key}="${it.value.encodeUrl()}""""
         }.joinToString(", ")
-        println(paramStr)
         val requestStr = request.map {
-            "${it.key}=${it.value.encodeUrl()}"
+            "${it.key}=${it.value}"
         }.joinToString("&")
         val authHeader = "OAuth $paramStr"
         val url = URL("https://api.twitter.com/1.1/statuses/update.json?$requestStr")
