@@ -25,8 +25,8 @@ class Twitter(private val oAuth: OAuth) {
         connection.setRequestProperty("Authorization", authHeader)
         try {
             connection.connect()
-            val reader = connection.inputStream.bufferedReader()
-            println(reader.readLines().joinToString("\n"))
+            connection.inputStream.bufferedReader().readLines()
+            println("Success")
         } catch (e: IOException) {
             e.printStackTrace()
             println(connection.errorStream.bufferedReader().readLines().joinToString("\n"))

@@ -2,11 +2,11 @@ import java.util.*
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
-data class OAuth(
-    val consumerKey: String,
-    val consumerSecret: String,
-    val oauthToken: String,
-    val oauthTokenSecret: String
+class OAuth(
+    private val consumerKey: String,
+    private val consumerSecret: String,
+    private val oauthToken: String,
+    private val oauthTokenSecret: String
 ) {
     fun buildAuthHeaderParams(
         method: String,
